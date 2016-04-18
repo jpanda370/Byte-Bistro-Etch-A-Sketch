@@ -1,0 +1,16 @@
+canvas = 0
+point = {'x': 0, 'y': 0}
+media = 0
+def init():
+  global point, canvas, media
+  setMediaFolder("C:\Users\Bob\Documents\CSUMB\Python\Final")
+  canvas = makeEmptyPicture(700,500)
+  copyInto(makePicture("Frame.png"), canvas, 0 ,0 )
+  point['x'] = getWidth(canvas)/2;
+  point['y'] = getHeight(canvas)/2;
+  show(canvas)
+def rightDial():
+  mov = requestIntegerInRange("how much (1-100)", 1,100)
+  addLine(canvas, point['x'], point['y'], point['x'], point['y'] + mov)
+  repaint(canvas)
+  
