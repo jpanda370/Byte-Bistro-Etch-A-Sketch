@@ -44,19 +44,40 @@ def getChars(char, str, len):
     if key == char:
       press += len  
   return press
-       
+
+def displayHelp():
+  showInformation("Welcome to Etch-A-Sketch\nTo play, use the following command reference:\n\n\
+  w - moves the cursor up\n\
+  s - moves the cursor down\n\
+  a - moves the cursor to the left\n\
+  d - moves the cursor to the right\n\
+  aw - moves the cursor up to the left, diagonally\n\
+  wd - moves the cursor up to the right, diagonally\n\
+  sw - moves the cursor down to the left, diagonally\n\
+  sd - moves the cursor down to the right, diagonally\n\n\
+  These keys can be inputted multiple times to repeat the action\n\
+  www - moves the cursor up three times\n\
+  awawaw - moves the cursor up to the left three times\n\
+  Other commands:\n\
+  shake - distorts the picture; clears the picture completely after 4 shakes\n\
+  help - Displays this window")
+     
 def main():
   init()
   draw = true
   len = 5
   shakecount = 0
-  
+  displayHelp()
   while(draw):
-    str = requestString("What would you like to do? (r, l, rl, -rl, -r, -l, exit, shak")
+    str = requestString("Enter a command (or type 'help' to show possible commands):")
+
     x = 0
     y = 0
     if(str == 'shake'):
       shakecount = shake(shakecount, canvas)
+      continue;
+    elif(str == 'help'):
+      displayHelp()
       continue;
     if(str == "exit"):
        draw = false
