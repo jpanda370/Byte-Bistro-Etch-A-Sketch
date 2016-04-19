@@ -49,6 +49,7 @@ def main():
   init()
   draw = true
   len = 20
+  shakecount = 0
   
   while(draw):
     str = requestString("What would you like to do? (r, l, rl, -rl, -r, -l, exit, shak")
