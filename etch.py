@@ -21,23 +21,34 @@ def dial(x, y):
 def shake():
   p = getPixels(canvas)
 
+def getChars(char, str, len):
+  press = 0
+  for key in str:
+    if key == char:
+      press += len  
+  return press
+       
 def main():
   init()
   draw = true
-  len = 5
+  len = 20
   
   while(draw):
     str = requestString("What would you like to do? (r, l, rl, -rl, -r, -l, exit, shak")
     x = 0
     y = 0
     if('s' in str):
-      y += len
+       char = 's'
+       y += getChars(char, str, len)
     if('w' in str):
-      y -= len
+       char = 'w'
+       y -= getChars(char, str, len)
     if('d' in str):
-      x += len
+       char = 'd'
+       x += getChars(char, str, len)
     if('a' in str):
-      x -= len
+      char = 'a'
+      x -= getChars(char, str, len)
     dial(x,y)
     if(str == "exit"):
        draw = false
