@@ -4,7 +4,6 @@ frame = 0
 point = {'x': 0, 'y': 0}
 media = 0
 
-
 def init():
   global point, canvas, media
   setMediaFolder("/home/michael/Documents/CST 205/JES/final/Byte-Bistro-Etch-A-Sketch")
@@ -16,10 +15,11 @@ def init():
   show(canvas)
   
 def dial(x, y):
-  addLine(canvas, point['x'], point['y'], point['x']+ x, point['y']+ y )
-  point['x'] += x
-  point['y'] += y
-  repaint(canvas)
+  if (point['x'] + x > 100) and (point['x'] + x <= 600):
+    addLine(canvas, point['x'], point['y'], point['x']+ x, point['y']+ y )
+    point['x'] += x
+    point['y'] += y
+    repaint(canvas)
   
 def shake():
   for x in range(80, 620):
@@ -40,7 +40,7 @@ def getChars(char, str, len):
 def main():
   init()
   draw = true
-  len = 5
+  len = 20
   
   while(draw):
     str = requestString("What would you like to do? (r, l, rl, -rl, -r, -l, exit, shak")
