@@ -1,10 +1,13 @@
+import random
 canvas = 0
 frame = 0
 point = {'x': 0, 'y': 0}
 media = 0
+
+
 def init():
   global point, canvas, media
-  setMediaFolder("C:\Users\Bob\Documents\CSUMB\Python\Final\byte-bistro-etch-a-sketch\\")
+  setMediaFolder("/home/michael/Documents/CST 205/JES/final/Byte-Bistro-Etch-A-Sketch")
   canvas = makeEmptyPicture(700,500)
   frame = makePicture("frame.png")
   copyInto(frame, canvas, 0 ,0 )
@@ -19,7 +22,13 @@ def dial(x, y):
   repaint(canvas)
   
 def shake():
-  p = getPixels(canvas)
+  for x in range(80, 620):
+    for y in range(73, 425):
+      p = getPixel(canvas, x, y)
+      r = random.randint(1, 2)
+      if r == 1:
+        setColor(p, makeColor(255, 255, 255))
+  repaint(canvas)
 
 def main():
   init()
@@ -30,13 +39,15 @@ def main():
     str = requestString("What would you like to do? (r, l, rl, -rl, -r, -l, exit, shak")
     x = 0
     y = 0
-    if('s' in str):
+    if(str == 'shake'):
+      shake()
+    elif('s' in str):
       y += len
-    if('w' in str):
+    elif('w' in str):
       y -= len
-    if('d' in str):
+    elif('d' in str):
       x += len
-    if('a' in str):
+    elif('a' in str):
       x -= len
     dial(x,y)
     if(str == "exit"):
