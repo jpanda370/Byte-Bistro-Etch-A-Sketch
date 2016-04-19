@@ -7,7 +7,7 @@ media = 0
 
 def init():
   global point, canvas, media
-  setMediaFolder("/home/michael/Documents/CST 205/JES/final/Byte-Bistro-Etch-A-Sketch")
+  setMediaFolder("C:\Users\Bob\Documents\CSUMB\Python\Final\byte-bistro-etch-a-sketch")
   canvas = makeEmptyPicture(700,500)
   frame = makePicture("frame.png")
   copyInto(frame, canvas, 0 ,0 )
@@ -16,7 +16,7 @@ def init():
   show(canvas)
   
 def dial(x, y):
-  if (point['x'] + x > 80) and (point['x'] + x <= 620):
+  if (point['x'] + x > 80) and (point['x'] + x <= 620) and (point['y'] + y > 70) and (point['y'] + y <= 425):
     addLine(canvas, point['x'], point['y'], point['x']+ x, point['y']+ y )
     point['x'] += x
     point['y'] += y
@@ -65,7 +65,7 @@ def displayHelp():
 def main():
   init()
   draw = true
-  len = 5
+  len = 20
   shakecount = 0
   displayHelp()
 
@@ -79,10 +79,11 @@ def main():
     elif(str == 'help'):
       displayHelp()
       continue;
+    else:
+      y += getChars('s', str, len)
+      y -= getChars('w', str, len)
+      x += getChars( 'd', str, len)
+      x -= getChars( 'a', str, len)
+    dial(x,y)
     if(str == "exit"):
        draw = false
-    y += getChars('s', str, len)
-    y -= getChars('w', str, len)
-    x += getChars( 'd', str, len)
-    x -= getChars( 'a', str, len)
-    dial(x,y)
