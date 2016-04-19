@@ -24,7 +24,6 @@ def dial(x, y):
   
 def shake(shakecount, canvas):
   if shakecount >= 3:
-    canvas = makeEmptyPicture(700,500)
     frame = makePicture("frame.png")
     copyInto(frame, canvas, 0 ,0 )
     repaint(canvas)
