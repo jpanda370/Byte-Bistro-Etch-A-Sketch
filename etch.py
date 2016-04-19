@@ -1,4 +1,5 @@
 import random
+
 canvas = 0
 frame = 0
 point = {'x': 0, 'y': 0}
@@ -15,20 +16,27 @@ def init():
   show(canvas)
   
 def dial(x, y):
-  if (point['x'] + x > 100) and (point['x'] + x <= 600):
+  if (point['x'] + x > 80) and (point['x'] + x <= 620):
     addLine(canvas, point['x'], point['y'], point['x']+ x, point['y']+ y )
     point['x'] += x
     point['y'] += y
     repaint(canvas)
   
-def shake():
-  for x in range(80, 620):
-    for y in range(73, 425):
+def shake(shakecount, canvas):
+  if shakecount >= 3:
+    canvas = makeEmptyPicture(700,500)
+    frame = makePicture("frame.png")
+    copyInto(frame, canvas, 0 ,0 )
+    repaint(canvas)
+    return 0
+  for x in range(80, 620, random.randint(1, 4)):
+    for y in range(73, 425, random.randint(1, 4)):
       p = getPixel(canvas, x, y)
       r = random.randint(1, 2)
       if r == 1:
         setColor(p, makeColor(255, 255, 255))
   repaint(canvas)
+  return (shakecount + 1)
 
 def getChars(char, str, len):
   press = 0
@@ -47,11 +55,12 @@ def main():
     x = 0
     y = 0
     if(str == 'shake'):
-      shake()
+      shakecount = shake(shakecount, canvas)
+      continue;
+    if(str == "exit"):
+       draw = false
     y += getChars('s', str, len)
     y -= getChars('w', str, len)
     x += getChars( 'd', str, len)
     x -= getChars( 'a', str, len)
     dial(x,y)
-    if(str == "exit"):
-       draw = false
