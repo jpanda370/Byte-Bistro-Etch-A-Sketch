@@ -40,7 +40,7 @@ def getChars(char, str, len):
 def main():
   init()
   draw = true
-  len = 20
+  len = 5
   
   while(draw):
     str = requestString("What would you like to do? (r, l, rl, -rl, -r, -l, exit, shak")
@@ -48,18 +48,10 @@ def main():
     y = 0
     if(str == 'shake'):
       shake()
-    if('s' in str):
-       char = 's'
-       y += getChars(char, str, len)
-    if('w' in str):
-       char = 'w'
-       y -= getChars(char, str, len)
-    if('d' in str):
-       char = 'd'
-       x += getChars(char, str, len)
-    if('a' in str):
-      char = 'a'
-      x -= getChars(char, str, len)
+    y += getChars('s', str, len)
+    y -= getChars('w', str, len)
+    x += getChars( 'd', str, len)
+    x -= getChars( 'a', str, len)
     dial(x,y)
     if(str == "exit"):
        draw = false
