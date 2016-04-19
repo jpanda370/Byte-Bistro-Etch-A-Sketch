@@ -48,7 +48,7 @@ def getChars(char, str, len):
 def main():
   init()
   draw = true
-  len = 4
+  len = 20
   shakecount = 0
   
   while(draw):
