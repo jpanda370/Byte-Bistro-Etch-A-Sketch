@@ -23,10 +23,12 @@ def dial(x, y):
     repaint(canvas)
   
 def shake(shakecount, canvas):
+  soundShake = makeSound("C:\\Users\\janpa\\Music\\11874__medialint__gourd-rattle-short-shake.wav")
   if shakecount >= 3:
     frame = makePicture("frame.png")
     copyInto(frame, canvas, 0 ,0 )
     repaint(canvas)
+    play(soundShake)
     return 0
   for x in range(80, 620, random.randint(1, 4)):
     for y in range(73, 425, random.randint(1, 4)):
@@ -35,6 +37,7 @@ def shake(shakecount, canvas):
       if r == 1:
         setColor(p, makeColor(255, 255, 255))
   repaint(canvas)
+  play(soundShake)
   return (shakecount + 1)
 
 def getChars(char, str, len):
@@ -66,6 +69,8 @@ def main():
   draw = true
   len = 20
   shakecount = 0
+  introSong = makeSound("C:\\Users\\janpa\\Music\\010114gamebgm(games).wav")
+  play(introSong)
   displayHelp()
 
   while(draw):
